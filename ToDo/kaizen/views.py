@@ -150,16 +150,16 @@ from .permissions import IsOwnerOrReadOnly
     
 #     def delete(self, request, *args, **kwargs):
 #         return self.destroy(request, *args, **kwargs)
-permission_classes=[permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]  
 class SnippetList(generics.ListCreateAPIView):
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]  
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-permission_classes=[permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]  
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]  
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
